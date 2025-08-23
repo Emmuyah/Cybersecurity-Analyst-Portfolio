@@ -1,0 +1,73 @@
+
+<div class="pac-1">
+<h1>Packet Analysis Project</h1>
+
+<h2> Objective of the Project</h2>
+<p>Use Wireshark to capture and analyze the traffic passing through the server's network interface, while ensuring that you
+comply with the filtering rules set by the IP tables and the external firewall. The goal is to:
+<ul>
+    <li>Capture live traffic on the endpoint/server using wireshark </li>
+    <li>Identify and filter traffic that is allowed or blocked by the firewall</li>
+    <li>Analyze the captured traffic to determine whether your IP table is correctly configured to block unauthorized access attempts</li>
+</p>
+<!-- Example image URL -->
+<img src="../assets/images/iptable-configuration.png" alt="IP Table Configuration" width="500" />
+
+<h2>Tools to Use:</h2>
+<ul>
+    <li>Kali Linux</li>
+    <li>Wireshark</li>
+</ul>
+<hr />
+<h2>Step-by-Step Process:</h2>
+<ul>
+    <li>Install wireshark (if not already installed)</li>
+    <li>Grant permissions to capture packets without root:
+        <ul>
+            <li>sudo usermod -aG wireshark $USER</li>
+            <li>newgrp wireshark</li>
+        </ul>
+    </li>
+    <li>Set rule to be persistence after reboot:
+        <ul>
+            <li>sudo apt install iptable-persistent</li>
+            <li>sudo netfilter-persistent save</li>
+        </ul>
+    </li>
+    <li>Configure IP tables to block telnet and allow SSH:
+        <ul>
+            <li>sudo iptables -A INPUT -p tcp --dport 23 -j DROP</li>
+            <li>sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT</li>
+        </ul>
+    </li>
+    <li>Start Wireshark and select the network interface to capture packets (e.g, eth0 or wlan0).</li>
+    <li>Apply a capture filter to focus on relevant traffic:
+        <ul>
+            <li>tcp port 22 or tcp port 23</li>
+        </ul>
+    </li>                   
+</ul>
+<hr />
+<div class="pac-2">
+<h2>Scan Result:</h2>
+<img src="../assets/images/telnet-blocking.png" alt="Telnet Blocking Filter" height="300" width="500" />
+<img src="../assets/images/ssh-allow.png" alt="SSH Allow Filter" height="300" width="500" />
+<img src="../assets/images/ping-icmp-response.png" alt="ICMP Response Filter" height="300" width="500" />
+<p>
+</div>
+<hr/>
+<h2>Traffic Filter in Wireshark:</h2>
+    <ul>
+        <li>tcp.port == 22 -- to see SSH traffic</li>
+        <li>tcp.dstport == 23 -- to see blocked Telnet Request</li>
+        <li>icmp.type == 0 -- to see Ping Request</li>
+        <li>ip.addr == 192.168.75.131 -- to focus on traffic to/from my server</li>
+        <li>tcp.flags.syn == 1 && tcp.flags.ack == 0 -- to identify connection attempts(new sessions)</li>
+    </ul>
+ 
+<hr/>
+</div>
+
+<footer>
+    <p>&copy; 2025 Emma U Portfolio</p>
+</footer>

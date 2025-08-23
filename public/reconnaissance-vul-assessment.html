@@ -1,0 +1,68 @@
+
+
+<h1>Reconnaissance and Vulnerability Assessment</h1>
+
+<h2> Objective of the Project</h2>
+<p>Perform a targeted reconnaissance and vulnerability assessment using
+two essential tools available by default in Kali Linux.. The goal is to:
+<ul>
+    <li>Use Nmap or Zenmap to identify: <ul>
+        <li>Open ports.</li>
+        <li>Running services</li>
+        <li>Potential vulnerabilities.</li>
+    </ul> 
+    <li>Use Nikto to conduct comprehensive digital asset vulnerability Scan identifying
+        <ul>
+            <li>Misconfigurations.</li>
+            <li>Outdated software versions.</li>
+            <li>Known exploitable endpoints.</li>
+        </ul>   
+   
+</ul>.
+</p>
+<!-- Example image URL -->
+<img src="../assets/images/nmap-scan-report.png" alt="Nmap Scan Report" width="500" />
+
+<h2>Tools to Use:</h2>
+<ul>
+    <li>Kali Linux</li>
+    <li>Nmap or Zenmap</li>
+    <li>Nikto</li>
+</ul>
+<hr />
+<h2>Nmap Commands:</h2>
+<ul>
+    <li>sudo nmap -sS -sV -T4 -Pn -oN nmap_scan.txt 192.168.1.60 (My target IP)
+        <ul>
+            <li>-sS: TCP SYN scan (stealthy).</li>
+            <li>-sV: Service version detection.</li>
+            <li>-T4: Aggressive timing template.</li>
+            <li>-Pn: Treat all hosts as online.</li>
+            <li>-oN: Output to a file.</li>
+        </ul>
+    </li>
+</ul>
+<h2>Nikto Command:</h2>
+<ul>
+    <li>nikto -h http://192.168.1.60 -output nikto_scan_report.txt. Scan for:
+        <ul>
+            <li>Outdated software</li>
+            <li>Misconfigurations</li>
+            <li>Default files</li>
+            <li>Directory listing</li>
+            <li>Potential vulnerabilities</li>
+        </ul>
+    </li>
+</ul>   
+<hr />
+<h2>Scan Result:</h2>
+<img src="../assets/images/nikto-scan-report.png" alt="Nikto Scan Report" width="500" />
+
+
+<p>
+</div>
+
+<footer>
+    <p>&copy; 2025 Emma U Portfolio</p>
+</footer>
+
